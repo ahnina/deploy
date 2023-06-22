@@ -1,0 +1,93 @@
+<section class="search-content">
+    <form action="/search" method="get" class="box search-bar">
+        <button type="submit">
+            <img src="/img/search.svg" alt="" class="search-img">
+        </button>
+        <input type="text" spellcheck="true" name="q" class="search-input" autocomplete="off">
+        <button type="button" class="filter-button">
+            <img src="/img/filter-icon.svg" alt="" class="filter-img" onclick="viewMode()">
+        </button>
+        <input type="number" name="maxRows" hidden style="display: none;" value="20">
+        <input type="number" name="index" hidden style="display: none;" value="1">
+    </form>
+    <div class="filter-area box">
+        <section class="filter-box">
+            <form action="" method="get" class="filter-fom">
+                <div>
+                    <label for="">DATABASE</label>
+                    <select name="db" id="db">
+                        <option value="">todos</option>
+                        <option value="CURATED">CURATED</option>
+                        <option value="LEGACY">LEGACY</option>
+                        <option value="QUALITY">QUALITY</option>
+                        <option value="RAW">RAW</option>
+                        <option value="VAR">VAR</option>
+                        <option value="SPEC">SPEC</option>
+                        <option value="NULL">vazio</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">ORIGEM</label>
+                    <select name="dbOrigin" id="">
+                        <option value="">todos</option>
+                        <option value="">AWS</option>
+                        <option value="">ORACLE</option>
+                        <option value="">SQL SERVER</option>
+                        <option value="">ECOSSISTEMA OB</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">CONJUNTO DADOS</label>
+                    <select name="" id="">
+                        <option value="">todos</option>
+                        <option value="ADQ">Adquirência</option>
+                        <option value="ANL">Analytics</option>
+                        <option value="ATE">Atendimento</option>
+                        <option value="AUD">Auditoria</option>
+                        <option value="BCD">Banco Digital</option>
+                        <option value="BRX">Bureaux</option>
+                        <option value="CAP">Captação</option>
+                        <option value="CAD">Cadastro</option>
+                        <option value="POS">Cadastro Positivo</option>
+                        <option value="CHE">Cheque Especial</option>
+                        <option value="CRT">Cartões</option>
+                        <option value="CPC">Compliance</option>
+                        <option value="CMP">Compras</option>
+                        <option value="CGO">Consignado</option>
+                        <option value="CNT">Contábel</option>
+                        <option value="CRE">Créditos</option>
+                        <option value="CRM">CRM</option>
+                        <option value="CPE">Empréstimo Pessoal</option>
+                        <option value="END">Engeharia de Dados</option>
+                        <option value="FMR">Formação</option>
+                        <option value="FRD">Fraudes</option>
+                        <option value="GTI">Governança de TI</option>
+                        <option value="IES">Informações Estratégicas</option>
+                        <option value="INV">Investimentos</option>
+                        <option value="JUR">Jurídico</option>
+                        <option value="MKT">Marketing</option>
+                        <option value="MKP">Marketplace</option>
+                        <option value="OPB">Open Finance</option>
+                        <option value="OPE">Operações</option>
+                        <option value="PES">Pessoas</option>
+                        <option value="PDL">PDL</option>
+                        <option value="COB">Recuperação de Crédito</option>
+                        <option value="RDT">Reserva de Dados Técnicos</option>
+                        <option value="RIS">Riscos</option>
+                        <option value="SEG">Seguros</option>
+                        <option value="SDP">Saúde</option>
+                        <option value="VCL">Veículos</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">DADOS SENSÍVEIS</label>
+                    <select name="DS" id="">
+                        <option value="">todos</option>
+                        <option value="AUTOMATICA">Contém</option>
+                        <option value="MANUAL">Não Contém</option>
+                    </select>
+                </div>
+            </form>
+    </div>
+    <script src="/js/filter.js"></script>
+</section>

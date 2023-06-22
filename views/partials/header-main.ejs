@@ -1,0 +1,29 @@
+<div class="top-body">
+    <section class="top">
+        <div class="name-infos">
+            <ul>
+                <li>
+                    <h3 class="db-name">DATABASE: <%= table.DATABASE %></h3>
+                </li>
+                <li>
+                    <h2 class="tb-name"><%= table.TABELA %></h2>
+                </li>
+            </ul>
+        </div>
+        <% if(String(table.DADOS_SENSIVEIS).trim().toLowerCase() == 's'){%>
+            <div class="content-level">
+                <img src="/img/sensitive-content.svg" title="Essa tabela contém dados sensíveis" alt="Imagem que informa que essa tabela contém dados sensíveis">
+            </div>
+        <%}%>
+    </section>
+    <nav class="nav-bat-top-main">
+        <section class="nav-bat-top-main">
+            <button type="radio" name= "visualização" value ="geral" class="nav-bat-top-butom selected" id="over-view" onclick="toggleToOverView(),selected(this)">Visão Geral</button>
+
+            <button class="nav-bat-top-butom" id="table-view" onclick="toggleToDetail(),selected(this)">Informações</button>
+
+            <button class="nav-bat-top-butom" id="datas-view" onclick="toggleToSample(),selected(this)">Amostra de Dados</button>
+        </section>
+    </nav>
+    <!-- <hr> -->
+</div>

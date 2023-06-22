@@ -1,0 +1,204 @@
+/* ---------------------------------------------
+Table of contents
+------------------------------------------------
+01. import partials
+02. font & reset css
+03. reset css
+04. global styles
+05. header
+06. footer
+07. preloader
+08. keyframes
+--------------------------------------------- */
+
+/*
+---------------------------------------------
+01. Import partials
+---------------------------------------------
+*/
+
+@import url(./partials/results.css);
+@import url(./partials/index.css);
+@import url(./partials/table.css);
+@import url(./partials/search.css);
+@import url(./partials/sidebar.css);
+@import url(./partials/header.css);
+@import url(./partials/header-table.css);
+@import url(./partials/table-details.css);
+@import url(./partials/header-request.css);
+@import url(./partials/not_found.css);
+@import url(./partials/no_search_result.css);
+@import url(./partials/make-request.css);
+@import url(./partials/loading.css);
+@import url(./partials/header-insert-req.css);
+@import url(./partials/toasts.css);
+/* 
+---------------------------------------------
+02. Font & reset css
+--------------------------------------------- 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mada:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Fredoka One');
+
+/*
+   03. Reset css
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    text-decoration: none;
+    /* list-style: none; */
+    font-weight: 500;
+    background-color: transparent;
+}
+
+/*
+---------------------------------------------
+04. global styles
+---------------------------------------------
+*/
+
+:root {
+    font-size: 10px;
+    /* Ligth Mode */
+    --ligth-text-color: #000;
+    --ligth-primari-color: #3CC1FE;
+    --ligth-default-color: #373740;
+    --ligth-maxRows-color: #D9D9D9;
+    --ligth-table-head: #242940;
+    --ligth-db-color: rgba(0, 0, 0, 0.5);
+    --ligth-link-color: darkblue;
+    --ligth-linkHover-color: #15B5FF;
+    --ligth-box-border: 0px solid var(--ligth-primari-color);
+    --ligth-box-shadow: #373740 0 0 5px;
+
+    /* Dark Mode */
+    --dark-text-color: #fff;
+    --dark-primari-color: #373740;
+    --dark-default-color: #C9C9CC;
+    --dark-box-border: 3px solid var(--dark-primari-color);
+    --dark-box-shadow: 2px 2px 5px #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 400;
+}
+
+a:hover,
+button:hover {
+    cursor: pointer;
+}
+
+html,
+body,
+.container {
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+logo {
+    font-size: 62px;
+    font-weight: 800;
+    color: var(--ligth-default-color);
+    font-family: "Rubik";
+}
+
+/*
+---------------------------------------------
+06. sidebar
+---------------------------------------------
+*/
+
+sidebar {
+    height: 100%;
+    width: 25%;
+    background-color: #15B5FF;
+    z-index: 1;
+    display: none;
+    row-gap: 2rem;
+    position: absolute;
+}
+
+/*
+---------------------------------------------
+07. header tamplate
+---------------------------------------------
+*/
+
+header {
+    grid-area: 1/1/3/13;
+    background-color: var(--dark-text-color);
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: repeat(4,12px);
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    box-shadow: var(--ligth-box-shadow);
+    /* transform: scale(0.8);
+    transform-origin: top; */
+}
+
+/*
+---------------------------------------------
+08. footer
+---------------------------------------------
+*/
+
+footer {
+    width: 100%;
+    margin: 1rem 0;
+    grid-area: 12/3/13/11;
+}
+
+footer address {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+footer address h3 {
+    line-height: 27px;
+}
+
+footer address p a,
+footer address p {
+    line-height: 30px;
+}
+
+/* Global grid style */
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding: 0;
+    text-align: center;
+}

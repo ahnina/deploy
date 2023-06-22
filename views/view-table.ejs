@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>PANGEIA|Tudo em um só lugar</title>
+</head>
+<body>
+    <header>
+        <%- include("partials/header.ejs"); %>
+    </header>
+    <div class="space"></div>    
+    <main>
+        <%- include("partials/header-main.ejs");%>
+        <section class="table-content">
+            <div class="top-desc">
+                <section class="desc-area">
+                    <h3 class="desc-table">Descrição da Tabela:</h3>
+                    <p class="desc-table-text">
+                        <%= table.CONTEUDO_TABELA %>
+                    </p>
+                </section>
+                <ul>
+                    <li>
+                        <button type="button" class="button-solicitation">
+                            <a href="*" target="_self"><img src="/img/solicitation-image.svg" title="Solicitar Acesso"> <p> Solicitar <br> acesso</p></a>
+                        </button>
+                    </li>
+
+                    <li>
+                        <button type="button" class="button-report">
+                            <a href="/insert-req?id=<%= table.ID%>" target="_self"><img src="/img/report.svg" title="Sugerir Alteração"> <p>Sugerir <br> alteração</p></a>
+                        </button>
+                    </li>
+
+                    <li>
+                        <button type="button" class="button-aws">
+                            <a href="*" target="_self"><img src="/img/cloud.svg" title="Sugerir Alteração na AWS"><p>Sugerir <br> alteração AWS</p></a>
+                        </button>
+                    </li>
+              </ul>
+            </div>
+            <table class="table">
+                <thead class="table-head">
+                    <tr class="table-row-head">
+                        <th>NOME DO CAMPO</th>
+                        <th>TIPO DO CAMPO</th>
+                        <th>TIPO DE PESSOA</th>
+                        <th>DESCRIÇÃO DO CAMPO</th>
+                        <th>CHAVE PRIMÁRIA</th>
+                        <th>ACEITA VAZIO</th>
+                        <th>DADO ÚNICO</th>
+                        <th title="">VOLÁTIL</th>
+                        <th>LGPD</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <!--Here a loop is 'for' to map de number of rows in the table-->
+                    <% for(let index in table.VARIAVEL) { %>
+                        <!--While the lop for get de index of the row a new row is genereted in the table using an ejs comand-->
+                        <%  let field = table.VARIAVEL[index]; %>
+                        <tr>
+                            <td>
+                                <% if (field.NOME_CAMPO != null){ %>
+                                    <%= field.NOME_CAMPO %>
+                                <% }else{ %>
+                                    <span title="Sem informação">-</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if (field.TIPO_CAMPO != null){ %>
+                                    <%= field.TIPO_CAMPO %>
+                                <% }else{ %>
+                                    <span title="Sem informação">-</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if(field.TIPO_PESSOA == 'PF'){%>
+                                    <span title="Pessoa física" aria-details="É chave primária">PF</span>
+                                <% }else if(field.TIPO_PESSOA == 'PJ'){ %>
+                                     <span title="Pessoa jurídica" aria-label="Não é chave primária">PJ</span>
+                                <% }else if(field.TIPO_PESSOA == "PF/PJ"){ %>
+                                     <span title="Pessoa física e jurídica">PF/PJ</span>
+                                <% }else{ %>
+                                    <span title="Sem informação">-</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if(field.DESCRICAO_CAMPO != null){ %>
+                                    <%= field.DESCRICAO_CAMPO %>
+                                <% }else{ %>
+                                    <span title="Sem informação">-</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if(field.CH_PRIMARIA == 'S'){%>
+                                    <span title="É chave primária" aria-details="É chave primária">☑</span>
+                                <% }else if(field.CH_PRIMARIA == 'N'){ %>
+                                     <span title="Não é chave primária" aria-label="Não é chave primária">☒</span>
+                                <% }else if(field.CH_PRIMARIA == null){ %>
+                                     <span title="Sem informação">-</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if(field.ACCEPT_NULL == 'S'){%>
+                                    <span title="Aceita vazio" aria-details="Aceita vazio">☑</span>
+                                <% }else if(field.ACCEPT_NULL == 'N'){ %>
+                                     <span title="Não aceita vazio" aria-label="Não aceita vazio">☒</span>
+                                <% }else if(field.ACCEPT_NULL == null){ %>
+                                     <span title="Sem informação">-</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if(field.UNQ == 'S'){%>
+                                    <span title="É único" aria-details="É único">☑</span>
+                                <% }else if(field.UNQ == 'N'){ %>
+                                     <span title="Não é único" aria-label="Não é único">☒</span>
+                                <% }else if(field.UNQ == null){ %>
+                                     <span title="Sem informação">-</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if(field.VOLARIL == 'S'){%>
+                                    <span title="É volátil" aria-details="É volátil">☑</span>
+                                <% }else if(field.VOLARIL == 'N'){ %>
+                                     <span title="Não é volátil" aria-label="Não é volátil">☒</span>
+                                <% }else if(field.VOLARIL == null){ %>
+                                     <span title="Sem informação">-</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <% if(field.LGPD == 'G'){%>
+                                    <span title="Genérico" aria-details="É chave primária">G</span>
+                                <% }else if(field.LGPD == 'S'){ %>
+                                     <span title="Sensível" aria-label="Não é chave primária">S</span>
+                                <% }else if(field.LGPD == "P"){ %>
+                                     <span title="Pessoal">P</span>
+                                <% }else{ %>
+                                        <span title="Sem informação">-</span>
+                                <% } %>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table> 
+        </section>
+        <section class="table-details-content">
+            <table class="table 1">
+                <thead class="table-head">
+                    <tr>
+                        <th>
+                            <div class="head-content">
+                                <img src="img/detalhes-icon.svg" alt="">
+                                <samp>Detalhes da Tabela</samp>
+                                <img src="img/info-icon.svg" alt="">
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr>
+                        <td>
+                            <span> Caminho: </span> <label for=""><%= table.CAMINHO %></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span> Database: </span> <label for=""><%= table.DATABASE %></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span> Ativo: </span> <label for=""><%= table.ID %></label> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table 2">
+                <thead class="table-head">
+                    <tr>
+                        <th>
+                            <div class="head-content">
+                                <img src="img/owner-icon.svg" alt="">
+                                <samp>Responsável pelos Dados</samp>
+                                <img src="img/info-icon.svg" alt="">
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr>
+                        <td>
+                            <span>Owner:</span> <label for=""><%= table.OWNER %></label> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Steward:</span> <label for=""><%= table.STEWARD %></label> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Conjunto de Dados: </span> <label for=""><%= table.CONJUNTODADOS_PRODUTO %></label> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table 3">
+                <thead class="table-head">
+                    <tr>
+                        <th>
+                            <div class="head-content">
+                                <img src="img/refresh-icon.svg" alt="">
+                                <samp>Disponibilidade de Atualização</samp>
+                                <img src="img/info-icon.svg" alt="">
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr>
+                        <td>
+                            <span>Defasagem:</span> <label for=""><%= table.DEFASAGEM %></label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table 4">
+                <thead class="table-head">
+                    <tr>
+                        <th>
+                            <div class="head-content">
+                                <img src="img/mecanism-icon.svg" alt="">
+                                <samp>Sustentação</samp>
+                                <img src="img/info-icon.svg" alt="">
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr>
+                        <td>
+                            <span>Engenheiro de Ingestão:</span><%= table.ENG_INGESTAO %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="sampleDatas" style="display: none;">
+            <table class="table">
+                <thead class="table-head">
+                    <tr class="table-row-head">
+                        <th>NOME DO CAMPO</th>
+                        <th>TIPO DO CAMPO</th>
+                        <th>TIPO DE PESSOA</th>
+                        <th>DESCRIÇÃO DO CAMPO</th>
+                        <th>CHAVE PRIMÁRIA</th>
+                        <th>ACEITA VAZIO</th>
+                        <th>DADO ÚNICO</th>
+                        <th title="">VOLÁTIL</th>
+                        <th>LGPD</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                        <tr>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                            >
+                            </td>
+                            <td>
+                            >
+                            </td>
+                            <td>
+                            >
+                            </td>
+                            <td>
+                            >
+                            </td>
+                            <td>
+                            >
+                            </td>
+                            <td>
+                            >
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+        </section>
+        
+    </main>
+    <script src="/js/table-detail.js"></script>
+</body>
+</html>

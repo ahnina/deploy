@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>PANGEIA|Tudo em um só lugar</title>
+</head>
+
+<body>
+    <header class="header-requisition">
+        <%- include("partials/header-request.ejs"); %>
+    </header>
+
+    <main>
+
+        <section class="table-requisition">
+            <table class="table">   
+                <thead class="table-head">
+                    <tr class="table-row-head">
+                        <th>NOME DA TABELA</th>
+                        <th>BREVE DESCRIÇÃO DA ALTERAÇÃO</th>
+                        <th>DATA DA REQUISIÇÃO</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <!--Here a loop is 'for' to map de number of rows in the table-->
+                    <% for(let index in requisitions) { %>
+                        <!--While the lop for get de index of the row a new row is genereted in the table using an ejs comand-->
+                        <%  let requisition = requisitions[index]; %>
+                            <tr>
+                                    <td>
+                                        <%= requisition.TABELA %>
+                                    </td>
+                                    <td>
+                                        <%= requisition.JUSTIFICATIVA %>
+                                    </td>
+                                    <td>
+                                        <%= requisition.DATA_REQ %>
+                                    </td>
+                                    <td>
+                                        <a href="/request?id=<%=requisition.ID_REQUISICAO%>">
+                                            VER MAIS
+                                        </a>   
+                                    </td>
+                            </tr>
+                    <% } %>
+                </tbody>
+               
+            </table>
+        </section>
+    </main>
+</body>
+
+</html>

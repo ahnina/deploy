@@ -1,0 +1,109 @@
+
+.results-container {
+    width: 94%;
+    max-width: 800px;
+    min-width: 300px;
+    min-height: 70vh;
+    margin: 10rem 0 2rem 40px;
+    text-align: left;
+    grid-area: 4/2/13/8;
+}
+
+.space{
+    min-height: 12%;    
+}
+
+.results-container > hgroup h2 {
+    font-size: 2.4rem;
+}
+
+.results-container > hgroup h2 strong {
+    color: darkblue;
+}
+
+.results-container > hgroup p {
+    font-size: 1.2rem;
+}
+
+.results-container .results {
+    min-height: 60vh;
+    margin: 2rem 0;
+}
+
+.results-container .results .result {
+    width: 100%;
+    margin: 3rem 0;
+}
+
+.results-container .result hgroup span {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.results-container .result hgroup .result-container-title {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.4rem 0;
+} 
+
+.results-container .result hgroup .result-container-title img {
+    width: 100%;
+    max-width: 25px;
+}
+
+.results-container .result hgroup h3 {
+    font-size: 1.8rem;
+    font-weight: normal;
+    color: var(--ligth-link-color);
+}
+
+.results-container .result p {
+    font-size: 1.3rem;
+    line-height: 17px;
+}
+
+.results-container .exhibition {
+    display: flex;
+    justify-content: space-between;
+    color: #D9D9D9;
+    margin-top: 5rem;
+}
+
+.results-container .exhibition label {
+    color: #9E9E9E;
+}
+
+.results-container .exhibition select {
+    background-color: #D9D9D9;
+    font-size: 1.1rem;
+    color: var(--ligth-db-color);
+    font-weight: 600;
+}
+
+.results-container .exhibition select option {
+    border: 0;
+    color: rgba(0, 0, 0, 1);
+    font-weight: 500;
+}
+
+.results-container .exhibition  button {
+    font-family: 'Mada', sans-serif;
+    margin: 0 2px;
+}
+
+.results-container .exhibition  button:first-child {
+    margin-right: 4px;
+}
+
+.results-container .exhibition  button:last-child {
+    margin-left: 4px;
+}
+
+.results-container .exhibition button.actual-page {
+    color: var(--ligth-link-color);
+}
+
+.results-container .result .result-container-title h3:hover{
+    color: var(--ligth-linkHover-color);
+    transition: 50ms;
+}

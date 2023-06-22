@@ -1,0 +1,339 @@
+:root{
+    --default-color: #646464;
+    --table-head-color: #fff;
+    --table-row-hover: #aeaeae79;
+    --table-head-border: #000 3px solid; 
+    --cover-boder: white 4px solid; 
+    --padding: 5px;
+}
+html, body{
+    font-family: sans-serif;
+    width: 99%;
+    height: 98%;
+    margin: auto;
+}
+
+/* Part referent to the description of the table on over view of the table */
+.table-content .top-desc{
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    margin: 0 20px;
+}
+
+.table-content ul{
+    margin-top: 12%;
+}
+.table-content li{
+    display: inline;
+    padding: 5%;
+
+}
+
+.table-content li a{
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+}
+.table-content .desc-area{
+    width: 100%;
+    margin: 20px 2.5%;
+    font-family: Montserrat, sans-serif;
+}
+.table-content .desc-table{
+    margin: 0;
+    font-size: 30px;
+}
+.table-content .desc-table-text{
+    margin: 0;
+    max-width: 80%;
+    font-size: 15px;
+}
+.table-content .button{
+   text-decoration: none;
+}
+/* Part referent to the stiling of the table itself */
+.table-content .table{ 
+    width: 97.5%;
+    border: var(--table-head-border);
+    border-radius: 13px; 
+    border-spacing: 0;
+    margin: 30px auto;
+    font-size: 16px;
+}
+.table-content .table-head .table-row-head{
+    background: var(--ligth-table-head);
+    color: var(--table-head-color);
+    
+}
+.table-content .table-head th{
+    border-bottom: var(--table-head-border);
+    padding: 5px;
+}
+.table-content .table td { 
+    border-bottom: none;
+    padding: 10px; 
+    text-align: center;
+}
+.table-content table tr:last-child > td {
+    border-bottom: none;
+}
+.table-content .table-body{
+    overflow: scroll;
+    scroll-behavior: smooth;
+}
+.table-content .table-body tr:nth-of-type(2n){
+    background-color: var(--table-row-hover);
+}
+
+.table-content .table-body td{
+    pointer-events: none;
+}
+
+.table-content .table-body tr:hover{
+    background: #9de0ffff;
+}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/* Part referent to the details of the table */
+.table-details-content{
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+    display: none;
+    grid-template-rows: 200px;
+    padding: 0%;
+    width: 96%;
+    margin: auto;
+}
+
+.table-details-content thead tr th .head-content{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto;
+    align-items: center;
+}
+.table-details-content .table{ 
+    width: 97.5%;
+    border: var(--table-head-border);
+    border-radius: 13px; 
+    border-spacing: 0;
+    margin: 30px auto;
+    font-size: 16px;
+}
+.table-details-content .table thead tr{
+    background: var(--ligth-table-head);
+    color: var(--table-head-color);
+}
+.table-details-content .table thead th{
+    border-bottom: var(--table-head-border);
+    padding: 5px;
+}
+.table-details-content .table td { 
+    border-bottom: none;
+    padding: 10px; 
+    text-align: center;
+} 
+.table-details-content table tr:last-child > td {
+    border-bottom: none;
+}
+.table-details-content .table-body tr:hover{
+    background: #9de0ffff;
+}
+
+.table-details-content tbody tr:nth-of-type(2n){
+    background-color: var(--table-row-hover);
+}
+.table-details-content .table-body td{
+    padding: var(--padding);
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.table-details-content .table-body td label{
+    margin: auto;
+    width: 100%;
+    text-align: left 10px;
+}
+
+@media screen and (max-width:990px){
+    .table-details-content{
+        grid-template-columns: repeat(1,1fr);
+        grid-template-rows: repeat(4,1fr);
+    }
+}
+/* =============================================================================================================== */
+/*             Part referent to the header-main, wich includes the name and the database of the table              */
+/* =============================================================================================================== */
+.top-body{
+    margin-top: 20px;
+    align-items: center;
+    width: 100%;
+}
+.top-body .top{
+    display: flex;
+}
+.top-body .top label{
+    color: rgba(87,87,87,0.4);
+}
+.top-body .name-infos ul{
+    list-style: none;
+}
+.top-body .db-name{
+    font-weight: 200;
+    font-size: 20px;
+}
+.top-body .tb-name{
+    font-weight: 700;
+    font-size: x-large;
+}
+.top-body .content-level{
+    margin-left: 65%;
+    display: grid;  
+}
+.top-body .content-level label{
+    margin: 10px auto;
+}
+
+/* =============================================================================================================== */
+/*             Part referent to the header-main, wich includes the name and the database of the table              */
+/* =============================================================================================================== */
+
+.sampleDatas{
+    display: none;
+}
+.sampleDatas .top-desc{
+    display: grid;
+    grid-template-columns: 9fr 1fr;
+    margin: 0 20px;
+}
+.sampleDatas .desc-area{
+    width: 100%;
+    margin: 20px 2.5%;
+    font-family: Montserrat, sans-serif;
+}
+.sampleDatas .desc-table{
+    margin: 0;
+    font-size: 30px;
+}
+.sampleDatas .desc-table-text{
+    margin: 0;
+    max-width: 50%;
+    font-size: 15px;
+}
+.sampleDatas .button-report{
+    cursor: pointer;
+    border: none;
+    background: transparent;
+}
+/* Part referent to the stiling of the table itself */
+.sampleDatas .table{ 
+    width: 97.5%;
+    border: var(--table-head-border);
+    border-radius: 13px; 
+    border-spacing: 0;
+    margin: 30px auto;
+    font-size: 16px;
+}
+.sampleDatas .table-head .table-row-head{
+    background: var(--ligth-table-head);
+    color: var(--table-head-color);
+    
+}
+.sampleDatas .table-head th{
+    border-bottom: var(--table-head-border);
+    padding: 5px;
+}
+.sampleDatas .table td { 
+    border-bottom: none;
+    padding: 10px; 
+    text-align: center;
+}
+.sampleDatas table tr:last-child > td {
+    border-bottom: none;
+}
+.sampleDatas .table-body{
+    overflow: scroll;
+    scroll-behavior: smooth;
+}
+.sampleDatas .table-body tr:nth-of-type(2n){
+    background-color: var(--table-row-hover);
+}
+.sampleDatas .table-body tr:hover{
+    background: #9de0ffff;
+}
+
+/*-------------------------------------------------------------------------------------------*/
+
+
+.table-requisition .table{ 
+    width: 97.5%;
+    border: var(--table-head-border);
+    border-radius: 13px; 
+    border-spacing: 0;
+    margin: 100px auto;
+    
+
+}
+.table-requisition .table-head .table-row-head{
+    background: var(--ligth-table-head);
+    color: var(--table-head-color);
+    
+}
+.table-requisition .table-head th{
+    border-bottom: var(--table-head-border);
+    padding: 5px;
+    font-family: "Fredoka";
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.table-requisition .table-body tr:nth-of-type(2n){
+    background-color: var(--table-row-hover);
+}
+.table-requisition .table-body tr:hover{
+    background: #9de0ffff;
+}
+
+.table-requisition .table td { 
+    border-bottom: none;
+    padding: 10px; 
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+.table-requisition table tr:last-child > td {
+    border-bottom: none;
+  }
+.table-requisition .table-body tr:nth-of-type(2n){
+    background-color: var(--table-row-hover);
+}
+.table-requisition .table-body tr:hover{
+    background: #9de0ffff;
+    cursor: pointer;
+}
+
+.active{
+    background-color: #3CC1FE;
+    position: relative;
+    z-index: -1;
+    :after {
+        position: absolute;
+        content: '';
+        width: calc(100% - 2px);
+        height: 100vh;
+        left: 1px;
+        z-index: -1;
+    }  
+}
+
+.active::after {
+    position: absolute;
+    content: '';
+    width: calc(100% - 2px);
+    height: 100vh;
+    left: 1px;
+    z-index: -1;
+}

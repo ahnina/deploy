@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <title>Pangeia | Tudo em um só lugar</title>
+</head>
+<body>
+        <%- include("partials/sidebar.ejs"); %>
+    <header>
+        <%- include("partials/header.ejs"); %>
+    </header>
+    <div class="container">
+        <% if (results.length > 0) {%>
+        <main class="results-container">
+            <hgroup>
+                <h2>Resultados para: <strong id="search-query"><%= query %></strong></h2>
+                <p>Exibindo <span id="qtdMaxRows"><%= results.length %></span> de <%= qtdRows %> resultados</p>
+            </hgroup>
+            <article class="results">
+                <% results.forEach((result) => { %>
+                    <% if (result.ID != null && result.ID != undefined) {  %>
+                        <section class="result">                    
+                            <a href='/table?id=<%= result.ID %>''>
+                                <hgroup>
+                                    <span><%= result.DATABASE %></span>
+                                    <div class="result-container-title">
+                                        <h3 title=""><%= result.TABELA %></h3>
+                                        <% if (String(result.DADOS_SENSIVEIS).trim().toLowerCase() == 's') { %>
+                                        <!--Renders an image if it have a sensible content <img src="" alt="Dados sensíveis"></img>-->
+                                            <img src="/img/sensitive-content.svg" title="Essa tabela contém dados sensíveis" alt="Imagem que informa que essa tabela contém dados sensíveis" />
+                                        <% } %>
+                                    </div>
+                                </hgroup>
+                            </a>
+                            <p><%= result.CONTEUDO_TABELA %></p>
+                        </section>
+                    <% } %>
+                <% }); %>
+            </article>
+            <form action="/search" method="get" id="change-exhibition" class="exhibition">
+                <input type="text" hidden id="q" name="q" value="<%= query %>">
+                <input type="text" hidden id="index-exhibition" name="index" value="<%= index %>">
+
+                <fieldset>
+                    <label for="maxRows">EXIBIR</label>
+                    <select name="maxRows" id="maxRows">
+                        <option value="20">20</option>
+                        <option value="40">40</option>
+                        <option value="60">60</option>
+                        <option value="80">80</option>
+                    </select>
+                    <label for="maxRows">RESULTADOS POR PÁGINA</label>
+                </fieldset>
+
+                <fieldset id="change-index">
+                    <button type="button" class="button-change-index" name="index" aria-label="Ir para página anterior" value="p" id="previous-result">&lt;</button>
+                    <% for(let i = 1; i <= 2; i++) { %>
+                        <% let previousIndex = (index - Math.abs(i - 3)); %>
+                        <% if (previousIndex < 1) { %>
+                            <% continue; %>
+                        <% } %>
+                        
+                        <button type="button" class="button-change-index" name="index" aria-label="Ir para a página <%= previousIndex %>" value="<%= previousIndex %>"><%= previousIndex %></button>
+                    <% } %>
+
+                    <button type="button" class="button-change-index actual-page" name="index" aria-label="Ir para a página <%= index %>" value="<%= index %>"><%= index %></button>
+
+                    <% for(let i = 1; i <= 2; i++) { %>
+                        <% let nextIndex = (index + i); %>
+                        <% if (nextIndex > totalIndex) { %>
+                            <% break; %>
+                        <% } %>
+                        
+                        <button type="button" class="button-change-index" name="index" aria-label="Ir para a página <%= nextIndex %>" value="<%= nextIndex %>"><%= nextIndex %></button>
+                    <% } %>
+
+                    <button type="button" class="button-change-index" name="index" aria-label="Ir para a próxima página" value="n" id="next-result">&gt;</button>
+                </fieldset>
+            </form>
+        </main>
+        <% } else { %>
+            <%- include("partials/no_search_result.ejs"); %>    
+        <%} %>
+       
+          <%- include("partials/footer.ejs"); %>
+       
+        
+    </div>
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>

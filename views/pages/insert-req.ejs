@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <title>Requisições de alteração</title>
+</head>
+<body>
+    <header>
+        <%- include("../partials/header-insert-req.ejs"); %>
+    </header>
+    
+    <% let connection = table.CONEXAO; %>
+    <%if (connection.length > 0) {
+        connection = table.CONEXAO[0];
+    } else {
+        connection = null;
+    }%>
+    <div class="container make-request">
+        <div class="datalists">
+            <datalist id="lagDatalist">
+                <option value="D-">D-</option>
+                <option value="H-">H-</option>
+                <option value="M-">M-</option>
+                <option value="ONLINE">ONLINE</option>
+            </datalist>
+            <datalist id="fieldTypeDatalist">
+                <option value="SMALLINT">SMALLINT</option>
+                <option value="INTEGER">INTEGER</option>
+                <option value="BIGINT">BIGINT</option>
+                <option value="DECIMAL">DECIMAL</option>
+                <option value="REAL">REAL</option>
+                <option value="DOUBLE PRECISION">DOUBLE PRECISION</option>
+                <option value="BOOLEAN">BOOLEAN</option>
+                <option value="CHAR">CHAR</option>
+                <option value="VARCHAR">VARCHAR</option>
+                <option value="DATE">DATE</option>
+                <option value="TIMESTAMP">TIMESTAMP</option>
+                <option value="TIMESTAMPTZ">TIMESTAMPTZ</option>
+                <option value="GEOMETRY">GEOMETRY</option>
+                <option value="GEOGRAPHY">GEOGRAPHY</option>
+                <option value="HLLSKETCH">HLLSKETCH</option>
+                <option value="SUPER">SUPER</option>
+                <option value="TIME">TIME</option>
+                <option value="TIMETZ">TIMETZ</option>
+                <option value="VARBYTE">VARBYTE</option>
+            </datalist>
+    
+        </div>
+        <form action="/insert-req" method="post" id="make-request-form">
+            <input type="text" hidden="true" name="tableID" value="<%= table.ID %>" id="tableID">
+            <%if (connection) {%>
+                <input type="text" hidden="true" name="connectionID" value="<%= connection.ID_CONEXAO %>" id="connectionID">
+            <%}%>
+            <h2>Sugerir alteração de metadados</h2>
+            <article class="article">
+                
+                <section>
+                    <label for="justify">Justificativa da alteração</label>
+                    <textarea class="input rounded" name="justify" id="justify" required rows="5" placeholder="Descreva o porquê dessa alteração"></textarea>
+                </section>
+            </article>
+
+            <details class="article">
+                <summary>Detalhes do Ativo</summary>
+                <fieldset>
+                    <section>
+                        <label for="tableDesc">Descrição da tabela</label>
+                        <div class="input flex">
+                            <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                            <textarea class="rounded" name="tableDesc" id="tableDesc" required rows="5" placeholder="Descreva a tabela"><%= table.CONTEUDO_TABELA %></textarea>
+                        </div>
+                        <div class="margin-bottom old input flex">
+                            <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                            <textarea disabled class="rounded" data-name="tableDesc" id="tableDescOld" required rows="5" placeholder="Descreva a tabela"><%= table.CONTEUDO_TABELA %></textarea>
+                        </div>
+                        
+                    </section>
+                    
+                    <section class="flex">
+                        <div class="flex-child-48">    
+                            <label for="tablePath">Caminho da Tabela</label>
+                            <div class="input flex">
+                                <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                <input value="<%= table.CAMINHO %>" placeholder="Digite o caminho da tabela" type="text" name="tablePath" id="tablePath">
+                            </div>
+                            <div class="margin-bottom old input flex">
+                                <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                <input value="<%= table.CAMINHO %>" aria-label="Versão antiga" type="text" disabled data-name="tablePath" id="tablePathOld">
+                            </div>
+                        </div>
+                        <div class="flex-child-48">
+                            <label 
+                            class="flex"
+                            title="Dentro da plataforma, em que Database (Base de Dados, DB) se encontra essa tabela?
+    Deve ser preenchido com a formatação idêntica ao que precisa ser usado na plataforma para acessar a tabela.
+                            "
+                            for="database">
+                                Database
+                                <img src="/img/info.svg" aria-hidden="true">
+                            </label>
+                            <div class="input flex">
+                                <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                <input value="<%= table.DATABASE %>" type="text" placeholder="Digite o Database (Base de Dados, DB) que essa tabela se encontra?" name="database" id="database">
+                            </div>
+                            <div class="margin-bottom old input flex">
+                                <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                <input value="<%= table.DATABASE %>" aria-label="Versão antiga" type="text" id="databaseOld" disabled data-name="database">
+                            </div>                            
+                        </div>
+                    </section>
+                </fieldset>
+            </details>
+            
+            <details class="article">
+                <summary>Disponibilidade de Atualização</summary>
+                <fieldset>
+                    <section>
+                            <label 
+                            title="Esses dados estão “atrasados” quanto tempo em relação ao tempo real? As abreviações são MIN para minutos, H para horas, D para dias, M para meses, A para anos, seguidos de -N onde N é a defasagem. Além disso usamos o texto ONLINE para atualizações em tempo real. A defasagem não leva em conta o tempo de processamento do sistema. A defasagem também não é a frequência de atualização. Uma tabela pode ser atualizada a cada 2h, mas trazer dados D-1.
+    Exemplo:
+    D-2
+    H-12
+    M-1
+    ONLINE                    
+                            "
+                            for="lag" class="flex">
+                                Defasagem
+                                <img src="/img/info.svg" aria-hidden="true">
+                            </label>
+                            <div class="input flex">
+                                <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                <input value="<%= table.DEFASAGEM %>" placeholder="Digite o quanto esses dados estão “atrasados” em relação ao tempo real" list="lagDatalist" type="text" name="lag" id="lag">
+                            </div>
+                            <div class="margin-bottom old input flex">
+                                <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                <input value="<%= table.DEFASAGEM %>" aria-label="Versão antiga" type="text" disabled data-name="lag" id="lagOld">
+                            </div>
+    
+                            <%if (connection) {%>
+                            <label class="flex"
+                            title="Intervalo entre as execuções do job/script deatualização/ingestão.
+    Exemplo:
+    2 HORAS
+    5 SEGUNDOS
+    3 DIÁRIO
+    SOB DEMANDA"
+                            for="updateFrequency">
+                                Frequência de Atualização
+                                <img src="/img/info.svg" aria-hidden="true">
+                            </label>
+                            <div class="input flex">
+                                <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                <input placeholder="Intervalo entre as execuções do job/script deatualização/ingestão" type="text" name="updateFrequency" id="updateFrequency" value="<%= connection.FREQUENCIA %>">
+                            </div>
+                            <div class="margin-bottom old input flex">
+                                <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                <input aria-label="Versão antiga" type="text" disabled data-name="updateFrequency" value="<%= connection.FREQUENCIA %>" id="updateFrequencyOld">
+                            </div>
+                            <%}%>
+                    </section>
+                </fieldset>
+            </details>
+            
+            <details class="article">
+                <summary>Responsável pelos dados</summary>
+                <fieldset>
+                    <section>
+                            <label class="flex" for="datasetData">
+                                Conjunto de Dados
+                                <img src="/img/info.svg" aria-hidden="true">
+                            </label>
+                            <div class="input flex">
+                                <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                <input placeholder="Digite o conjunto de dados" type="text" name="datasetData" id="datasetData" value="<%= table.CONJUNTODADOS_PRODUTO %>">
+                            </div>
+                            <div class="margin-bottom old input flex">
+                                <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                <input aria-label="Versão antiga" type="text" disabled data-name="datasetData" value="<%= table.CONJUNTODADOS_PRODUTO %>" id="datasetDataOld">
+                            </div>
+    
+                            <label class="flex" title="É o nome que consta na página de Owners e Stewards." for="ownerData">
+                                Owner
+                                <img src="/img/info.svg" aria-hidden="true">
+                            </label>
+                            <div class="input flex">
+                                <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                <input placeholder="Nome completo do Owner do Conjunto de Dados ao qual a tabela pertence" value="<%= table.OWNER %>" type="text" name="ownerData" id="ownerData">
+                            </div>
+                            <div class="margin-bottom old input flex">
+                                <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                <input value="<%= table.OWNER %>" aria-label="Versão antiga" type="text" disabled data-name="ownerData" id="ownerDataOld">
+                            </div>  
+    
+                            <label title="É a pessoa que possui as informações de negócio sobre a tabela, e pode responder sobre as expectativas de qualidade de dados, contexto de negócio etc. Na página de Owners e Stewards há uma sugestão de nome por Conjunto de Dado, mas o nome pode mudar de acordo com a tabela para ser quem pode trazer essas informações." class="flex" for="stewardData">
+                                Steward
+                                <img src="/img/info.svg" aria-hidden="true">
+                            </label>
+                            
+                            <div class="input flex">
+                                <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                <input placeholder="Nome completo do Steward responsável pela tabela" type="text" value="<%= table.STEWARD %>" name="stewardData" id="stewardData">
+                            </div>
+                            <div class="margin-bottom old input flex">
+                                <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                <input value="<%= table.STEWARD %>" aria-label="Versão antiga" type="text" disabled data-name="stewardData" id="stewardDataOld">
+                            </div> 
+                    </section>
+                </fieldset>
+            </details>
+            
+            <details class="article">
+                <summary>Sustentação</summary>
+                <fieldset>
+                    
+                    <section>
+                            <label title="Nome completo do Engenheiro de Dados que realizou a ingestão da tabela no sistema em referência." for="engResp" class="flex">
+                                Engenheiro Responsável pela Ingestão
+                                <img src="/img/info.svg" aria-hidden="true">
+                            </label>
+                            <div class="input flex">
+                                <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                <input placeholder="Nome completo do Engenheiro de Dados que realizou a ingestão da tabela" type="text" name="engResp" id="engResp" value="<%= table.ENG_INGESTAO %>" >
+                            </div>
+                            <div class="margin-bottom old input flex">
+                                <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                <input aria-label="Versão antiga" type="text" disabled data-name="engResp" value="<%= table.ENG_INGESTAO %>" id="engRespOld">
+                            </div>
+    
+                            <%if (connection) {%>
+                            <label title="Se a alimentação é automática ou precisa de acionamento manual." class="flex" for="mechanics">
+                                Mecânica
+                                <img src="/img/info.svg" aria-hidden="true">
+                            </label>
+                            <div class="input flex">
+                                <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                <select name="mechanics" id="mechanics">
+                                    <<option <%= connection.MECANICA == 'AUTOMATICA' ? 'selected' : '' %> value="AUTOMATICA">AUTOMATICA</option>
+                                    <option <%= connection.MECANICA != 'AUTOMATICA' ? 'selected' : '' %> value="MANUAL">MANUAL</option>
+                                </select>
+                            </div>
+                            <div class="margin-bottom old input flex">
+                                <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                <select disabled data-name="mechanics" aria-label="Versão antiga" id="mechanicsOld">
+                                    <option <%= connection.MECANICA == 'AUTOMATICA' ? 'selected' : '' %> value="AUTOMATICA">AUTOMATICA</option>
+                                    <option <%= connection.MECANICA != 'AUTOMATICA' ? 'selected' : '' %> value="MANUAL">MANUAL</option>
+                                </select>
+                            </div>
+                            <%}%>
+                    </section>
+                </fieldset>
+            </details>
+                        
+            <details class="article">
+                <summary>Campos</summary>
+                <fieldset  class="fields">
+                    <%for(let index in table.VARIAVEL){%>
+                        <%let field = table.VARIAVEL[index];%>
+                        <details>
+                            <summary><%= field.NOME_CAMPO %></summary>
+                            <fieldset class="field">
+                                <input type="text" hidden value="<%= field.ID_VARIAVEL %>" name="fieldID">
+                                <section>
+                                    <label for="fieldName<%= field.ID_VARIAVEL %>">Nome do campo</label>
+                                    <div class="input flex">
+                                        <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                        <input type="text" name="fieldName" placeholder="Digite o nome do campo" value="<%= field.NOME_CAMPO %>" id="fieldName<%= field.ID_VARIAVEL %>">
+                                    </div>
+                                    <div class="margin-bottom old input flex">
+                                        <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                        <input aria-label="Versão antiga" type="text" disabled data-name="fieldName" value="<%= field.NOME_CAMPO %>" id="fieldNameOld<%= field.ID_VARIAVEL %>">
+                                    </div>
+
+                                    <label 
+                                    title="O tipo de dado (datype) do campo na tabela. Deve respeitar a nomenclatura da plataforma.
+Exemplo:
+VARCHAR
+NUMERIC
+BOOLEAN" class="flex" for="fieldType<%= field.ID_VARIAVEL %>">
+                                        Tipo do Campo
+                                        <img src="/img/info.svg" aria-hidden="true">
+                                    </label>
+                                    <div class="input flex">
+                                        <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                        <input placeholder="O tipo de dado (datype) do campo na tabela" list="fieldTypeDatalist" type="text" name="fieldType" value="<%= field.TIPO_CAMPO %>" id="fieldType<%= field.ID_VARIAVEL %>">
+                                    </div>
+                                    <div class="margin-bottom old input flex">
+                                        <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                        <input aria-label="Versão antiga" type="text" disabled data-name="fieldType" value="<%= field.TIPO_CAMPO %>" id="fieldTypeOld<%= field.ID_VARIAVEL %>">
+                                    </div>
+            
+                                    <label title="A que tipo de entidade esses dados se referem? A análise deve ser feita levando em conta o contexto da tabela. Se em uma coluna de data o valor pode se referir tanto à data de nascimento de uma PF, ou de criação de uma PJ, o preenchimento é com ‘AMBOS’. Se é uma tabela de endereços de clientes, e sabemos que todos são PF, todas as colunas dessa tabela se referem à pessoas físicas, então todas devem ser preenchidas como PF."
+                                    class="flex"
+                                    for="personType<%= field.ID_VARIAVEL %>">
+                                        Tipo de Pessoa
+                                        <img src="/img/info.svg" aria-hidden="true">
+                                    </label>
+                                    <div class="input flex">
+                                        <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                        <select name="personType" value="<%= field.TIPO_PESSOA %>" id="personType<%= field.ID_VARIAVEL %>">
+                                            <option <%= field.TIPO_PESSOA != 'PF' && field.TIPO_PESSOA != 'PJ' && field.TIPO_PESSOA != 'PF/PJ' ? 'selected' : '' %> value="-">Não se aplica</option>
+                                            <option <%= field.TIPO_PESSOA != 'PF' ? 'selected' : '' %> value="PF">Pessoa fisíca</option>
+                                            <option <%= field.TIPO_PESSOA != 'PJ' ? 'selected' : '' %> value="PJ">Pessoa jurídica</option>
+                                            <option <%= field.TIPO_PESSOA != 'PF/PJ' ? 'selected' : '' %> value="PF/PJ">Pessoa fisíca ou jurídica</option>
+                                        </select>
+                                    </div>
+                                    <div class="margin-bottom old input flex">
+                                        <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                        <select disabled aria-label="Versão antiga" data-name="personType" value="<%= field.TIPO_PESSOA %>" id="personTypeOld<%= field.ID_VARIAVEL %>">
+                                            <option <%= field.TIPO_PESSOA != 'PF' && field.TIPO_PESSOA != 'PJ' && field.TIPO_PESSOA != 'PF/PJ' ? 'selected' : '' %> value="-">Não se aplica</option>
+                                            <option <%= field.TIPO_PESSOA != 'PF' ? 'selected' : '' %> value="PF">Pessoa fisíca</option>
+                                            <option <%= field.TIPO_PESSOA != 'PJ' ? 'selected' : '' %> value="PJ">Pessoa jurídica</option>
+                                            <option <%= field.TIPO_PESSOA != 'PF/PJ' ? 'selected' : '' %> value="PF/PJ">Pessoa fisíca ou jurídica</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <label title="É uma explicação do que tem dentro do campo. Ela deve ser suficiente, quando unida à descrição da tabela, para entender a natureza dos dados dessa coluna e seu contexto no negócio. É um campo de texto simples, mas bem explicado." class="flex" for="fieldDesc<%= field.ID_VARIAVEL %>">
+                                        Descrição do Campo
+                                        <img src="/img/info.svg" aria-hidden="true">
+                                    </label>
+                                    <div class="input flex">
+                                        <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                        <input placeholder="Uma ou duas frases descrevendo o conteúdo do campo com base no negócio." type="text" name="fieldDesc" value="<%= field.DESCRICAO_CAMPO %>" id="fieldDesc<%= field.ID_VARIAVEL %>">
+                                    </div>
+                                    <div class="margin-bottom old input flex">
+                                        <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                        <input aria-label="Versão antiga" type="text" disabled data-name="fieldDesc" value="<%= field.DESCRICAO_CAMPO %>" id="fieldDescOld<%= field.ID_VARIAVEL %>">
+                                    </div>
+                                    
+                                    <label title="Indica se o campo é a chave primária, ou faz parte da chave primária, dessa tabela. Só tem valores S/N para plataformas que precisem tecnicamente dessa definição em suas tabelas." class="flex" for="isPK<%= field.ID_VARIAVEL %>">
+                                        É chave primária?
+                                        <img src="/img/info.svg" aria-hidden="true">
+                                    </label>
+                                    <div class="input flex">
+                                        <img class="icon" src="/img/plus-icon.svg" aria-hidden="true" >
+                                        <select id="isPK<%= field.ID_VARIAVEL %>" name="isPK" value="<%= field.CH_PRIMARIA %>">
+                                            <option <%= field.CH_PRIMARIA != 'S' ? 'selected' : '' %>  value="N">Não</option>
+                                            <option <%= field.CH_PRIMARIA == 'S' ? 'selected' : '' %> value="S">Sim</option>
+                                        </select>
+                                    </div>
+                                    <div class="margin-bottom old input flex">
+                                        <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                        <select disabled data-name="isPK" value="<%= field.CH_PRIMARIA %>" aria-label="Versão antiga" id="isPKOld<%= field.ID_VARIAVEL %>">
+                                            <option <%= field.CH_PRIMARIA != 'S' ? 'selected' : '' %>  value="N">Não</option>
+                                            <option <%= field.CH_PRIMARIA == 'S' ? 'selected' : '' %> value="S">Sim</option>
+                                        </select>
+                                    </div>
+                                    
+            
+                                    <label title="Se o campo aceita valores nulos ou não, de acordo com as regras de negócio da tabela." class="flex" for="acceptNull<%= field.ID_VARIAVEL %>">
+                                        Aceita valor nulo?
+                                        <img src="/img/info.svg" aria-hidden="true">
+                                    </label>
+                                    <div class="input flex">
+                                        <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                        <select name="acceptNull" value="<%= field.ACCEPT_NULL %>" id="acceptNull<%= field.ID_VARIAVEL %>">
+                                            <option <%= field.ACCEPT_NULL != 'S' ? 'selected' : '' %> value="N">Não</option>
+                                            <option <%= field.ACCEPT_NULL == 'S' ? 'selected' : '' %> value="S">Sim</option>
+                                        </select>
+                                    </div>
+                                    <div class="margin-bottom old input flex">
+                                        <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                        <select aria-label="Versão antiga" disabled data-name="acceptNull" value="<%= field.ACCEPT_NULL %>" id="acceptNullOld<%= field.ID_VARIAVEL %>">
+                                            <option <%= field.ACCEPT_NULL != 'S' ? 'selected' : '' %> value="N">Não</option>
+                                            <option <%= field.ACCEPT_NULL == 'S' ? 'selected' : '' %> value="S">Sim</option>
+                                        </select>
+                                    </div>
+            
+            
+                                    <label title="Se o campo tem valores únicos ou não, de acordo com as regras de negócio da tabela. É sempre sim para a coluna da chave primária, se ela for uma chave simples." class="flex" for="unqField<%= field.ID_VARIAVEL %>">
+                                        Seu valor deve ser único?
+                                        <img src="/img/info.svg" aria-hidden="true">
+                                    </label>
+                                    <div class="input flex">
+                                        <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                        <select name="isUNQ" value="<%= field.UNQ %>" id="unqField<%= field.ID_VARIAVEL %>">
+                                            <option <%= field.UNQ != 'S' ? 'selected' : '' %> value="N">Não</option>
+                                            <option <%= field.UNQ == 'S' ? 'selected' : '' %> value="S">Sim</option>
+                                        </select>
+                                    </div>
+                                    <div class="margin-bottom old input flex">
+                                        <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                        <select disabled aria-label="Versão antiga" data-name="isUNQ" value="<%= field.UNQ %>" id="isUNQOld<%= field.ID_VARIAVEL %>">
+                                            <option <%= field.UNQ != 'S' ? 'selected' : '' %> value="N">Não</option>
+                                            <option <%= field.UNQ == 'S' ? 'selected' : '' %> value="S">Sim</option>
+                                        </select>
+                                    </div>
+            
+                                    <label for="volatile<%= field.ID_VARIAVEL %>">
+                                        Volátil
+                                    </label>
+                                    <div class="input flex">
+                                        <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                        <input type="text" name="volatile" value="<%= field.VOLATIL %>" id="volatile<%= field.ID_VARIAVEL %>">
+                                    </div>
+                                    <div class="margin-bottom old input flex">
+                                        <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                        <input type="text" disabled data-name="volatile" value="<%= field.VOLATIL %>" id="volatileOld<%= field.ID_VARIAVEL %>">
+                                    </div>
+            
+                                    <label 
+                                    title="Esse dado, do ponto de vista da LGPD, é genérico (G), pessoal (P), ou pessoal sensível (S)?" class="flex" for="LGPD<%= field.ID_VARIAVEL %>">
+                                        LGPD
+                                        <img src="/img/info.svg" aria-hidden="true">
+                                    </label>
+                                    <div class="input flex">
+                                        <img class="icon" src="/img/plus-icon.svg" aria-hidden="true">
+                                        <select name="LGPD" value="<%= field.LGPD %>" id="LGPD<%= field.ID_VARIAVEL %>">
+                                            <option <%= field.LGPD != 'P' && field.LGPD != 'S'%> value="G">Genérico</option>
+                                            <option value="P" <%= field.LGPD == 'P' ? 'selected' : '' %>>Pessoal</option>
+                                            <option value="S" <%= field.LGPD == 'S' ? 'selected' : '' %> >Pessoal sensível</option>
+                                        </select>
+                                    </div>
+                                    <div class="margin-bottom old input flex">
+                                        <img class="icon big" src="/img/history-icon.svg" aria-hidden="true">
+                                        <select disabled aria-label="Versão antiga" data-name="LGPD" value="<%= field.LGPD %>" id="LGPDOld<%= field.ID_VARIAVEL %>">
+                                            <option <%= field.LGPD != 'P' && field.LGPD != 'S'%> value="G">Genérico</option>
+                                            <option value="P" <%= field.LGPD == 'P' ? 'selected' : '' %>>Pessoal</option>
+                                            <option value="S" <%= field.LGPD == 'S' ? 'selected' : '' %> >Pessoal sensível</option>
+                                        </select>
+                                    </div>
+                                </section>
+                            </fieldset>
+                        </details>
+                    <%}%>
+                    
+                </fieldset>    
+            </details>
+
+            <div class="buttons">
+                <button type="submit">Enviar</button>
+            </div>
+            
+        </form>
+    </div>
+</body>
+</html>

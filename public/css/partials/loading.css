@@ -1,0 +1,39 @@
+.loading-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+}
+
+.loading-spinner {
+    grid-area: 3/3/5/5;
+    margin: auto;
+    width: 10rem;
+    height: 10rem;
+    border: 1rem solid #f3f3f3;
+    border-top: 1rem solid var(--ligth-primari-color);
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+.loading-text {
+    grid-area: 5/3/6/5;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    font-size: 2rem;
+    padding-left: 1%;
+    text-align: center;
+
+}

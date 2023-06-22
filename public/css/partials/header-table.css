@@ -1,0 +1,110 @@
+:root{
+    --border-top-main: 2px solid #07B2FD;
+    --default-top-main: 2px solid #646464;
+    --default-color: #646464;
+    --cover-boder: white 4px solid;
+}
+
+.top-body{
+    align-items: center;
+    width: 100%;
+}
+.top-body .top{
+    display: flex;
+}
+.top-body .top label{
+    color: rgba(87,87,87,0.4);
+}
+.top-body .name-infos ul{
+    list-style: none;
+}
+.top-body .db-name{
+    font-weight: 200;
+    font-size: 20px;
+}
+.top-body .tb-name{
+    font-weight: 700;
+    font-size: x-large;
+}
+.top-body .content-level{
+    margin: auto;
+}
+.top-body .content-level label{
+    margin: 10px auto;
+}
+.top-body .nav-bat-top-main{
+    margin-top: 2em;
+}
+.top-body .nav-bat-top-main section{
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    font-size: 16px;
+    margin: 0;
+    border-bottom: 2px solid var(--ligth-linkHover-color);
+}
+.top-body .nav-bat-top-butom{
+    margin:0 2px;
+    padding: 5px;
+    border: var(--default-top-main);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom: none;
+    text-align: center;
+    color: black;
+}
+
+.top-body .nav-bat-top-butom.selected{
+    margin:0 2px;
+    padding: 5px;
+    border: 2px solid var(--ligth-linkHover-color);
+    border-bottom: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-align: center;
+    color: var(--ligth-linkHover-color);
+    position: relative;
+    z-index: 1;
+    transition: filter 0.3s ease 0.3s; 
+}
+
+.top-body .nav-bat-top-butom.selected::after {
+    content: '';
+    width: 100%;
+    height: 1px;   
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    border-bottom: 2px solid white;
+}
+
+.top-body #over-view{
+    grid-area: 1/6/2/7;
+}
+.top-body #table-view{
+    grid-area: 1/7/2/8;
+}
+.top-body #datas-view{
+    grid-area: 1/8/2/9;
+}
+
+.top-body .nav-bat-top-butom:active{
+    background-color: var(--ligth-linkHover-color);
+    color: white;
+    transition: all 0 0.5s 1s ;
+}
+
+.access-request{
+    position: fixed;
+    bottom: 2.5vh;
+    right: 1.5vw;
+    padding: 1%;
+    background-color: #07B2FD;
+    color: #fff;
+    border-radius: 50%;
+    z-index: 5;
+    padding-left: 1.6%;
+    padding-right: 1.6%;
+    scale: 80%;
+    box-shadow: var(--ligth-box-shadow);
+    }

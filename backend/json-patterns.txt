@@ -1,0 +1,295 @@
+//JSON pattern - insert-req
+[
+	{
+		"id_tabela": "autmato",
+		"user": "juninho",
+		"justify": "eita",
+		"status": 0,
+		"reqs_tabela": [{
+			"id_campo_tabela": 1,
+			"alteracao": " t"
+		}],
+		"reqs_variavel": [{
+				"id_campo_variavel": 4,
+				"alteracao": " "
+			},
+			{
+				"id_campo_variavel": 4,
+				"alteracao": " "
+			}
+		],
+		"reqs_conexao": [{
+				"id_campo_conexao": 4,
+				"alteracao": ""
+			},
+			{
+				"id_campo_conexao": 4,
+				"alteracao": ""
+			}
+		]
+	}
+]
+
+//JSON pattern - insert-tb
+[
+	{
+		"ID": "database.tabela2",
+		"CONJUNTODADOS_PRODUTO": "Engenharia de Dados",
+		"ID_TABELA": "AWS.CLOUDTRAIL_AWSLOGS_TEMP",
+		"TABELA": "CLOUDTRAIL_AWSLOGS_TEMP",
+		"CONTEUDO_TABELA": "Tabela contém log de eventos do ambiente do Data Lake.",
+		"CRITICIDADE_TABELA": null,
+		"DADOS_SENSIVEIS": null,
+		"DEFASAGEM": null,
+		"DATABASE": "DB_PAN_DL_CURATED",
+		"CAMINHO": "s3://pansegs3bucketcloudtrailprod/awslogs/135628704092/cloudtrail/us-east-1/2022/05/06/",
+		"SCRIPTS_ALIMENTACAO": "-",
+		"ENG_INGESTAO": "-",
+		"OWNER": "Samir Migliani",
+		"STEWARD": "Rafael Cordeiro de Araujo",
+		"INDICADORAJUSTENOMENCLATURATABELA": "S",
+		"LINK_SOL_ACESSO": null,
+		"LINK_REPORTAR_ERRO": null,
+		"RANKING_GOVERNANCA": null,
+		"QTD_VIZUALIZACAO": null,
+		"CONEXAO": [{
+			"ORDEM_ORIGEM": 1,
+			"TABELA_ORIGEM": null,
+			"SISTEMA_ORIGEM": null,
+			"SERVIDOR_ORIGEM": null,
+			"DATABASE_ORIGEM": null,
+			"SCHEMA_ORIGEM": null,
+			"TIPO_CONEXAO": null,
+			"REPOSITORIO": null,
+			"MECANICA": null,
+			"FREQUENCIA": null,
+			"MODO_ESCRITA": null
+		}],
+		"VARIAVEL": [{
+			"NOME_CAMPO": "ALGO",
+			"TIPO_CAMPO": "SOMETHING",
+			"TIPO_PESSOA": "PJ",
+			"DESCRICAO_CAMPO": "SIM",
+			"VOLATIL": "N",
+			"CH_PRIMARIA": "N",
+			"ACCEPT_NULL": "N",
+			"UNQ": "N",
+			"LGPD": "G"
+		}],
+		"CLASSIFICACAO": [
+			{
+				"ID_VALOR_CLASSIFICACAO": "TXT"
+			}
+		]
+	}
+]
+
+//JSON pattern - update-req
+[{
+	"id_requisicao": 1,
+	"status": 1,
+	"tb_req_conexao": [{
+		"id_req_conexao": 1,
+		"alteracao_governanca": "algo"
+	}],
+	"tb_req_tabela": [{
+		"id_req_tabela": 1,
+		"alteracao_governanca": "algo"
+	}],
+	"tb_req_variavel": [{
+		"id_req_variavel": 1,
+		"alteracao_governanca": "algo"
+	}]
+}]
+
+
+{
+  ID: 'DB_PAN_DL_RAW.TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+  CONJUNTODADOS_PRODUTO: 'Jurídico',
+  ID_TABELA: 'AWS.TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+  TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+  CONTEUDO_TABELA: 'Tabela de Jurídico que aponta se houve solicitação de testemunhas, com a descrição em não solicitada, solicitada, indicada, questionário devolvido, dispensada..',
+  CRITICIDADE_TABELA: null,
+  DADOS_SENSIVEIS: null,
+  DEFASAGEM: null,
+  DATABASE: 'DB_PAN_DL_RAW',
+  CAMINHO: 's3://pan-dl-prd-raw/juridico/panjur/jur-tbl-processoclassificacaotestemunha/',
+  SCRIPTS_ALIMENTACAO: '-',
+  ENG_INGESTAO: 'Camila.Medina@grupopan.com',
+  OWNER: 'Alessandro Wada',
+  STEWARD: 'Priscila Sawada Ueno',
+  INDICADORAJUSTENOMENCLATURATABELA: 'N',
+  LINK_SOL_ACESSO: null,
+  LINK_REPORTAR_ERRO: null,
+  RANKING_GOVERNANCA: null,
+  QTD_VIZUALIZACAO: null,
+  CONJUNTO_DADOS: 'Jurídico',
+  SIGLA_CONJUNTO_DE_DADOS: 'JUR',
+  DATA_OWNER: 'Alessandro Wada',
+  DATA_STEWARD: 'Priscila Sawada Ueno',
+  PADRAO_NOMENCLATURA_CONJUNTO_DADO: 'JURIDICO',
+  DATA_CRIACAO: '06/09/2022',
+  STATUS_CONJUNTO_DADO: 'Ativo',
+  CONEXAO: [
+    {
+      ID_CONEXAO: 3278,
+      ID: 'DB_PAN_DL_RAW.TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      CONJUNTODADOS_PRODUTO: 'Jurídico',
+      TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      ORDEM_ORIGEM: 1,
+      TABELA_ORIGEM: null,
+      SISTEMA_ORIGEM: null,
+      SERVIDOR_ORIGEM: null,
+      DATABASE_ORIGEM: null,
+      SCHEMA_ORIGEM: null,
+      TIPO_CONEXAO: null,
+      REPOSITORIO: null,
+      MECANICA: null,
+      FREQUENCIA: 'diario',
+      MODO_ESCRITA: null
+    }
+  ],
+  VARIAVEL: [
+    {
+      ID_VARIAVEL: 68145,
+      CONJUNTODADOS_PRODUTO: 'Jurídico',
+      TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      NOME_CAMPO: 'fld_processoclassificacaotestemunhaid',
+      TIPO_CAMPO: 'int',
+      TIPO_PESSOA: '-',
+      DESCRICAO_CAMPO: null,
+      CH_PRIMARIA: null,
+      ACCEPT_NULL: null,
+      UNQ: null,
+      VOLATIL: null,
+      LGPD: null
+    },
+    {
+      ID_VARIAVEL: 68146,
+      CONJUNTODADOS_PRODUTO: 'Jurídico',
+      TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      NOME_CAMPO: 'fld_processoclassificacaotestemunhanome',
+      TIPO_CAMPO: 'string',
+      TIPO_PESSOA: '-',
+      DESCRICAO_CAMPO: null,
+      CH_PRIMARIA: null,
+      ACCEPT_NULL: null,
+      UNQ: null,
+      VOLATIL: null,
+      LGPD: null
+    },
+    {
+      ID_VARIAVEL: 68147,
+      CONJUNTODADOS_PRODUTO: 'Jurídico',
+      TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      NOME_CAMPO: 'fld_natureza',
+      TIPO_CAMPO: 'int',
+      TIPO_PESSOA: '-',
+      DESCRICAO_CAMPO: null,
+      CH_PRIMARIA: null,
+      ACCEPT_NULL: null,
+      UNQ: null,
+      VOLATIL: null,
+      LGPD: null
+    },
+    {
+      ID_VARIAVEL: 68148,
+      CONJUNTODADOS_PRODUTO: 'Jurídico',
+      TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      NOME_CAMPO: 'fld_processoclassificacaostatus',
+      TIPO_CAMPO: 'boolean',
+      TIPO_PESSOA: '-',
+      DESCRICAO_CAMPO: null,
+      CH_PRIMARIA: null,
+      ACCEPT_NULL: null,
+      UNQ: null,
+      VOLATIL: null,
+      LGPD: null
+    },
+    {
+      ID_VARIAVEL: 68149,
+      CONJUNTODADOS_PRODUTO: 'Jurídico',
+      TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      NOME_CAMPO: 'anomesdia',
+      TIPO_CAMPO: 'string',
+      TIPO_PESSOA: '-',
+      DESCRICAO_CAMPO: 'Data de inserção dos dados no [data lake]. Campo técnico.',
+      CH_PRIMARIA: 'N',
+      ACCEPT_NULL: 'N',
+      UNQ: 'N',
+      VOLATIL: 'N',
+      LGPD: 'G'
+    },
+    {
+      ID_VARIAVEL: 68154,
+      CONJUNTODADOS_PRODUTO: 'Jurídico',
+      TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      NOME_CAMPO: 'fld_processoclassificacaotestemunhaid',
+      TIPO_CAMPO: 'int',
+      TIPO_PESSOA: '-',
+      DESCRICAO_CAMPO: null,
+      CH_PRIMARIA: null,
+      ACCEPT_NULL: null,
+      UNQ: null,
+      VOLATIL: null,
+      LGPD: null
+    },
+    {
+      ID_VARIAVEL: 68155,
+      CONJUNTODADOS_PRODUTO: 'Jurídico',
+      TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      NOME_CAMPO: 'fld_processoclassificacaotestemunhanome',
+      TIPO_CAMPO: 'string',
+      TIPO_PESSOA: '-',
+      DESCRICAO_CAMPO: null,
+      CH_PRIMARIA: null,
+      ACCEPT_NULL: null,
+      UNQ: null,
+      VOLATIL: null,
+      LGPD: null
+    },
+    {
+      ID_VARIAVEL: 68156,
+      CONJUNTODADOS_PRODUTO: 'Jurídico',
+      TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      NOME_CAMPO: 'fld_natureza',
+      TIPO_CAMPO: 'int',
+      TIPO_PESSOA: '-',
+      DESCRICAO_CAMPO: null,
+      CH_PRIMARIA: null,
+      ACCEPT_NULL: null,
+      UNQ: null,
+      VOLATIL: null,
+      LGPD: null
+    },
+    {
+      ID_VARIAVEL: 68157,
+      CONJUNTODADOS_PRODUTO: 'Jurídico',
+      TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      NOME_CAMPO: 'fld_processoclassificacaostatus',
+      TIPO_CAMPO: 'boolean',
+      TIPO_PESSOA: '-',
+      DESCRICAO_CAMPO: null,
+      CH_PRIMARIA: null,
+      ACCEPT_NULL: null,
+      UNQ: null,
+      VOLATIL: null,
+      LGPD: null
+    },
+    {
+      ID_VARIAVEL: 68158,
+      CONJUNTODADOS_PRODUTO: 'Jurídico',
+      TABELA: 'TB_JURIDICO_PANJUR_JUR_TBL_PROCESSOCLASSIFICACAOTESTEMUNHA',
+      NOME_CAMPO: 'anomesdia',
+      TIPO_CAMPO: 'string',
+      TIPO_PESSOA: '-',
+      DESCRICAO_CAMPO: 'Data de inserção dos dados no [data lake]. Campo técnico.',
+      CH_PRIMARIA: 'N',
+      ACCEPT_NULL: 'N',
+      UNQ: 'N',
+      VOLATIL: 'N',
+      LGPD: 'G'
+    }
+  ],
+  CLASSIFICACAO_TABELA: []
+}

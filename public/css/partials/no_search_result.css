@@ -1,0 +1,54 @@
+.box-result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-top: 7%;
+}
+
+.result-area {
+    height: center;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.term {
+    text-align: justify;
+}
+
+.center_list {
+    text-align: justify;
+    list-style: circle;
+
+}
+
+.space1 {
+    margin-top: 30%;
+}
+
+
+@media screen and (max-width: 520px) {
+    .box-result {
+        width: 100%;
+        float: none;
+        height: auto;
+    }
+
+    .result-area {
+        width: 100%;
+        float: none;
+        height: auto;
+    }
+
+    .term {
+        width: 100%;
+        float: none;
+        height: auto;
+    }
+
+    .center_list {
+        width: 100%;
+        float: none;
+        height: auto;
+    }
+}

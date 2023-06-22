@@ -1,0 +1,47 @@
+.erro404 {
+    font-family: 'Fredoka One';
+    font-size: 6rem;
+    grid-area: 2/5/3/9;
+    /* text-align: center; */
+    /* height: auto; */
+}
+
+.not_found_page {
+    font-family: 'Fredoka';
+    color: #B5B5B8;
+    font-size: 3rem;
+    grid-area: 3/5/4/9;
+}
+
+.content1 {
+    padding-top: 3%;
+    text-align: center;
+}
+
+.world_map {
+    grid-area: 5/4/12/10;
+}
+
+@media screen and (max-width: 1320px) {
+    .world_map {
+        grid-area: 5/3/12/10;
+
+    }
+
+}
+
+@media screen and (max-width: 1120px) {
+    .world_map {
+        grid-area: 5/2/12/10;
+
+    }
+
+}
+
+@media screen and (max-width: 950px) {
+    .world_map {
+        grid-area: 5/1/12/10;
+
+    }
+
+}
